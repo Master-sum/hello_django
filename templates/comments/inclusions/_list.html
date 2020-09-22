@@ -1,0 +1,35 @@
+<h3>评论列表，共 <span>{{ comment_count }}</span> 条评论</h3>
+<ul class="comment-list list-unstyled">
+    {% for comment in comment_list %}
+        <div id="comment">
+            <div id="comment-l" class="comment-l">
+                <li class="comment-item">
+                    <span class="nickname">{{ comment.name }}</span>
+                    <time class="submit-date" datetime="{{ comment.creat_time }}">{{ comment.creat_time }}</time>
+                    <div id="text" class="text">
+                        <div id="comment_{{ comment.pk }}">
+                            {{ comment.text|safe|linebreaks }}
+                        </div>
+                    </div>
+            </div>
+            <span class="cl-effect-11"><a href="javascript:reply({{ comment.pk }});">回复</a></span>
+            {% for reply in comment.root_comment.all %}
+                <div id="comment_t1"class="comment_t1">
+                    {#                            <div>{{ reply.pk }}</div>#}
+                    <span class="nickname">{{ reply.name.username }}</span>
+                    <span>回复</span>
+                    <span class="nickname">{{ reply.reply_to.username }}</span>
+                    <time class="submit-date" datetime="{{ reply.creat_time }}">{{ reply.creat_time }}</time>
+                    <div id="comment_{{ reply.pk }}">
+                        <span class="nickname">{{ reply.text|safe|linebreaks }}</span>
+                    </div>
+                    <span class="cl-effect-11"><a href="javascript:reply({{ reply.pk }});">回复</a></span>
+                </div>
+            {% endfor %}
+
+            </li>
+        </div>
+    {% empty %}
+        暂无评论
+    {% endfor %}
+</ul>

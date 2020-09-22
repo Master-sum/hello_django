@@ -1,0 +1,20 @@
+<form id="form_top" action="{% url 'comments:comment' article.pk %}" method="post" class="comment-form">
+ <label for="{{ form.text.id_for_label }}">评论：</label><br/>
+   <div id="reply_c" style="display: none">
+       <p>回复：</p>
+       <div id="reply_comment">
+       </div>
+   </div>
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-md-12">
+            <input type="hidden" name="object_id" value="{{ article.pk }}">
+            <input type="hidden" name="content_object" value="{{ article }}">
+            <input type="hidden" name="reply_comment_id" id="reply_comment_id" value="{{reply_comment_id}}">
+            {{ form.media }}
+            {{ form.text }}
+            {{ form.text.errors }}<br/>
+            <button type="submit" class="comment-btn">发表</button>
+        </div>
+    </div>
+</form>
