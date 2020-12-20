@@ -17,7 +17,6 @@
                                 <span class="post-category"><a href="#">{{ article.category.name}}</a></span>
                                 <span class="post-date"><a href="#"><time class="entry-date"
                                                                           datetime="{{ article.creat_time }}">{{ article.creat_time }}</time></a></span>
-                                <span class="post-author"><a href="#">{{ article.author }}</a></span>
                                 <span class="comments-link"><a href="{{article.get_absolute_url}}#comment-area">{{ article.comment_set.count}}评论</a></span>
                                 <span class="views-count"><a href="#">{{ article.view_num}}阅读</a></span>
                             </div>
